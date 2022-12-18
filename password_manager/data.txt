@@ -1,0 +1,10 @@
+aa | example@email.com | a
+bb | example@email.com | b
+aa | example@email.com | a
+ | example@email.com | 
+aa | example@email.com | a
+ | example@email.com | 
+ | example@email.com | 
+ | example@email.com | 
+aa | example@email.com | a
+aa | example@email.com | eo2Ky!d6Nf7$d!Nf

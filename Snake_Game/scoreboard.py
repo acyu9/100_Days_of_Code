@@ -10,15 +10,28 @@ class Scoreboard(Turtle):
         self.penup()
         self.hideturtle()
         self.goto(0, 250)
-        self.point = 0
-        self.score()
+        self.score = 0
+        with open("score.txt") as file:
+            self.highest_score = int(file.read())
+        self.update_score()
             
-    def score(self):
+    def update_score(self):
         self.clear()
-        self.write(arg=f"Score: {self.point}", align=ALIGNMENT, font=FONT)
-        self.point += 1
-    
-    def game_over(self):
-        self.goto(0, 0)
-        self.write(arg="GAME OVER", align=ALIGNMENT, font=FONT)
+        self.write(arg=f"Score: {self.score}  Highest Score: {self.highest_score}", align=ALIGNMENT, font=FONT)
+        
+    def increase_score(self):
+        self.score += 1
+        self.update_score()
+
+    # def game_over(self):
+    #     self.goto(0, 0)
+    #     self.write(arg="GAME OVER", align=ALIGNMENT, font=FONT)
+
+    def reset(self):
+        if self.score > self.highest_score:
+            self.highest_score = self.score
+            with open("score.txt", mode="w") as file:
+                file.write(str(self.highest_score))
+        self.score = 0
+        self.update_score()
         
