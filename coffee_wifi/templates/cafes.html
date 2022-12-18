@@ -1,0 +1,51 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+<!-- Separate table heading and table body -->
+	  <table class="table">
+      {% for row in cafes %}
+        {%if row == cafes[0] %}
+        <thead>
+          <tr>
+            {% for ele in row %}
+              <th scope="col">{{ ele }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        {% else %}
+          <tbody>
+              <tr>
+                {% for ele in row %}
+                  {% if "http" in ele %}
+                    <td><a href="{{ ele }}">Maps Link</a></td>
+                  {% else %}
+                    <td>{{ ele }}</td>
+                  {% endif %}
+                {% endfor %}
+              </tr>
+          </tbody>
+        {% endif %}
+      {% endfor %}
+  	  </table>
+      <!-- url_for needs to use FUNCTION name -->
+      <p><a href="{{ url_for('home') }}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
